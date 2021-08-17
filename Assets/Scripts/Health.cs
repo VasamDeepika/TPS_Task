@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Health : MonoBehaviour
     int startHealth = 3;
     [SerializeField]
     int currentHealth;
+
+    //public ParticleSystem particleEffect;
     private void OnEnable()
     {
         currentHealth = startHealth;
@@ -22,6 +25,11 @@ public class Health : MonoBehaviour
     }
     private void Die()
     {
+        //particleEffect.Play();
         gameObject.SetActive(false);
+        if(gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 }

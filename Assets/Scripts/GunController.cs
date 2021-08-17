@@ -10,6 +10,7 @@ public class GunController : MonoBehaviour
     [SerializeField]
     [Range(1, 10)]
     int damage = 1;
+    int bulletCount = 5;
     [SerializeField] float timer;
     [SerializeField] Transform firePoint;
     public ParticleSystem particleEffect;
@@ -36,7 +37,10 @@ public class GunController : MonoBehaviour
             if (Input.GetButton("Fire1"))
             {
                 timer = 0f;
-                FireGun();
+                if (bulletCount > 0)
+                {
+                    FireGun();
+                }
             }
         }
     }
@@ -44,6 +48,7 @@ public class GunController : MonoBehaviour
     private void FireGun()
     {
         particleEffect.Play();
+        bulletCount--;
         Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
         Debug.DrawRay(ray.origin, ray.direction * 100f, Color.blue, 2f);
         RaycastHit hit;
@@ -52,7 +57,7 @@ public class GunController : MonoBehaviour
         audioSource.Play();
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            Instantiate(bulletPrefab, ray.origin, firePoint.rotation);
+            //Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             var health = hit.collider.gameObject.GetComponent<Health>();
             if (health != null)
             {

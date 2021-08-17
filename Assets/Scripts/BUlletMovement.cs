@@ -15,6 +15,6 @@ public class BUlletMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector3(0, 0, 1)*bulletSpeed;
+        rb.velocity = new Vector3(0, 0, 1) * bulletSpeed;
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,16 +11,19 @@ public class PlayerMovement : MonoBehaviour
     public float backSpeed;
     public float turnSpeed;
     public Animator anim;
-    
+
+    ScoreManager scoreManager;
+
     // Start is called before the first frame update
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
@@ -33,6 +38,14 @@ public class PlayerMovement : MonoBehaviour
         {
             float moveSpeed = (vertical > 0) ? playerSpeed : backSpeed;
             characterController.SimpleMove(transform.forward * vertical * moveSpeed);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Gold" || other.gameObject.tag == "Bottle")
+        {
+            scoreManager.IncrementScore();
+            other.gameObject.SetActive(false);
         }
     }
 }
