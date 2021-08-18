@@ -28,6 +28,5 @@ public class EnemyMovement : MonoBehaviour
             float enemySpeed = nav.velocity.magnitude;
             anim.SetFloat("Speed", enemySpeed);
         }
-
     }
 }

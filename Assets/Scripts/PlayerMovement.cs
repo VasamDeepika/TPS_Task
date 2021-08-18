@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,14 +13,16 @@ public class PlayerMovement : MonoBehaviour
     public float turnSpeed;
     public Animator anim;
 
-    ScoreManager scoreManager;
+    public static PlayerMovement instance;
+    public int score = 0;
+    public Text ScoreText;
 
     // Start is called before the first frame update
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
-        scoreManager = FindObjectOfType<ScoreManager>();
+        instance = this;
     }
     void Start()
     {
@@ -44,8 +47,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "Gold" || other.gameObject.tag == "Bottle")
         {
-            scoreManager.IncrementScore();
+            score++;
+            ScoreText.text = "Score: " + score;
+            SaveData();
             other.gameObject.SetActive(false);
         }
+    }
+    public void SaveData()
+    {
+        //PlayerPrefs.SetInt("highscore",score);
+        string filePath = UnityEngine.Application.persistentDataPath + "/PlayerScore.file";
+        FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
+        BinaryWriter bw = new BinaryWriter(fs);
+        bw.Write(score);
+        fs.Close();
+        bw.Close();
     }
 }
