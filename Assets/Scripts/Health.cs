@@ -9,11 +9,17 @@ public class Health : MonoBehaviour
     int startHealth = 3;
     [SerializeField]
     int currentHealth;
+    public bool isPlayerAlive = true;
+    public static Health instance;
 
     //public ParticleSystem particleEffect;
     private void OnEnable()
     {
         currentHealth = startHealth;
+    }
+    private void Awake()
+    {
+        instance = this;
     }
     public void TakeDamage(int damageAmount)
     {
@@ -29,7 +35,10 @@ public class Health : MonoBehaviour
         gameObject.SetActive(false);
         if(gameObject.tag == "Player")
         {
+            isPlayerAlive = false;
+            GameManager.instance.WaitForSeconds();
             SceneManager.LoadScene(2);
         }
     }
+    
 }

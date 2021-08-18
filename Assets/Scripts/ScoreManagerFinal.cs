@@ -9,6 +9,6 @@ public class ScoreManagerFinal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "Score: " + PlayerMovement.instance.score.ToString();
+        scoreText.text = "Score: " + AggroDetection.instance.score.ToString();
     }
 }

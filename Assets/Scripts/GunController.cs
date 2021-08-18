@@ -14,6 +14,7 @@ public class GunController : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] Transform firePoint;
     public ParticleSystem particleEffect;
+    public ParticleSystem deathParticleEffect;
     Animator anim;
 
     public GameObject bulletPrefab;
@@ -48,6 +49,7 @@ public class GunController : MonoBehaviour
     private void FireGun()
     {
         particleEffect.Play();
+        deathParticleEffect.Play();
         bulletCount--;
         Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
         Debug.DrawRay(ray.origin, ray.direction * 100f, Color.blue, 2f);
@@ -64,6 +66,5 @@ public class GunController : MonoBehaviour
                 health.TakeDamage(damage);
             }
         }
-
     }
 }

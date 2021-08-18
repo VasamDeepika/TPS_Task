@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator anim;
 
     public static PlayerMovement instance;
-    public int score = 0;
-    public Text ScoreText;
+
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
@@ -40,26 +40,27 @@ public class PlayerMovement : MonoBehaviour
         if (vertical != 0)
         {
             float moveSpeed = (vertical > 0) ? playerSpeed : backSpeed;
+            //anim.SetTrigger("Back");
             characterController.SimpleMove(transform.forward * vertical * moveSpeed);
+
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Gold" || other.gameObject.tag == "Bottle")
+        if (other.gameObject.tag == "Gold" || other.gameObject.tag == "Bottle")
         {
-            score++;
-            ScoreText.text = "Score: " + score;
-            SaveData();
             other.gameObject.SetActive(false);
         }
     }
+
     public void SaveData()
     {
         //PlayerPrefs.SetInt("highscore",score);
         string filePath = UnityEngine.Application.persistentDataPath + "/PlayerScore.file";
         FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
         BinaryWriter bw = new BinaryWriter(fs);
-        bw.Write(score);
+        bw.Write(AggroDetection.instance.score);
         fs.Close();
         bw.Close();
     }
