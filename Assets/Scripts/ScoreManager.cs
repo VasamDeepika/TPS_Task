@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    int score = 0;
+    public int score = 0;
     public Text ScoreText;
     public static ScoreManager instance;
     private void Awake()
@@ -16,5 +16,10 @@ public class ScoreManager : MonoBehaviour
     {
             score++;
             ScoreText.text = "Score: " + score;
+    }
+    public void AggroIncrementScore()
+    {
+        score = score+5;
+        ScoreText.text = "Score: " + score;
     }
 }

@@ -6045,7 +6045,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score:'
+  m_Text: 'Score: 0'
 --- !u!222 &964851024
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17006,6 +17006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c7ea027ec1aef4587affe403705e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   ScoreText: {fileID: 964851023}
 --- !u!4 &1971303590
 Transform:

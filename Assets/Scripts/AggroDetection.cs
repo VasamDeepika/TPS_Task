@@ -27,7 +27,8 @@ public class AggroDetection : MonoBehaviour
             aggroDetected = true;
             if(aggroDetected == true)
             {
-                ScoreManager.instance.IncrementScore();
+                ScoreManager.instance.AggroIncrementScore();
+                PlayerMovement.instanc.SaveData();
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -12,21 +13,15 @@ public class PlayerMovement : MonoBehaviour
     public float backSpeed;
     public float turnSpeed;
     public Animator anim;
-
-    public static PlayerMovement instance;
-
-
+    public static PlayerMovement instanc;
+    int coinCount = 5;
 
     // Start is called before the first frame update
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
-        instance = this;
-    }
-    void Start()
-    {
-
+        instanc = this;
     }
 
     // Update is called once per frame
@@ -44,13 +39,20 @@ public class PlayerMovement : MonoBehaviour
             characterController.SimpleMove(transform.forward * vertical * moveSpeed);
 
         }
+        if(coinCount<=0)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Gold" || other.gameObject.tag == "Bottle")
         {
+            coinCount--;
             other.gameObject.SetActive(false);
+            ScoreManager.instance.IncrementScore();
+            SaveData();
         }
     }
 

@@ -10,7 +10,7 @@ public class GunController : MonoBehaviour
     [SerializeField]
     [Range(1, 10)]
     int damage = 1;
-    int bulletCount = 5;
+    int bulletCount = 6;
     [SerializeField] float timer;
     [SerializeField] Transform firePoint;
     public ParticleSystem particleEffect;
