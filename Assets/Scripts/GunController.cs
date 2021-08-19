@@ -17,7 +17,6 @@ public class GunController : MonoBehaviour
     public ParticleSystem deathParticleEffect;
     Animator anim;
 
-    public GameObject bulletPrefab;
     public Transform cameraTranform;
 
     AudioSource audioSource;
@@ -49,7 +48,6 @@ public class GunController : MonoBehaviour
     private void FireGun()
     {
         particleEffect.Play();
-        deathParticleEffect.Play();
         bulletCount--;
         Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
         Debug.DrawRay(ray.origin, ray.direction * 100f, Color.blue, 2f);
@@ -61,6 +59,8 @@ public class GunController : MonoBehaviour
         {
             //Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             var health = hit.collider.gameObject.GetComponent<Health>();
+            Instantiate(deathParticleEffect, hit.collider.gameObject.transform.position, Quaternion.identity);
+            deathParticleEffect.gameObject.SetActive(true);
             if (health != null)
             {
                 health.TakeDamage(damage);
