@@ -54,7 +54,6 @@ public class GunController : MonoBehaviour
 
     private void FireGun()
     {
-       
         bulletCount--;
         Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
         Debug.DrawRay(ray.origin, ray.direction * 100f, Color.blue, 2f);
