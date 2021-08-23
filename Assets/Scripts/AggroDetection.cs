@@ -9,12 +9,7 @@ public class AggroDetection : MonoBehaviour
 {
     public event Action<Transform> OnAggro = delegate { };
     public bool aggroDetected = false;
-    public static AggroDetection instance;
-
-    private void Awake()
-    {
-        instance = this;
-    }
+   
     private void Start()
     {
         PlayerMovement player = GetComponent<PlayerMovement>();

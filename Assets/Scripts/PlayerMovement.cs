@@ -12,9 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public float playerSpeed;
     public float backSpeed;
     public float turnSpeed;
-    public Animator anim;
+    Animator anim;
     [SerializeField]
-    int coinCount = 5;
+    int coinCount = 7;
 
     public ParticleSystem coinParticleEffect;
 
@@ -57,4 +57,11 @@ public class PlayerMovement : MonoBehaviour
             ScoreManager.instance.IncrementScore();
         }
     }
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Gold")
+        {
+            print("trigger");
+        }
+    }*/
 }
