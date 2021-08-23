@@ -603,6 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1936761549}
+  highScoreText: {fileID: 0}
 --- !u!1 &1615374471
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,7 +731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32, y: -91.9}
+  m_AnchoredPosition: {x: -25.9, y: -104.1}
   m_SizeDelta: {x: 203.0256, y: 61.4418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1936761549

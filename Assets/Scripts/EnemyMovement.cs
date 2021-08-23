@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     AggroDetection aggro;
     NavMeshAgent nav;
     Transform enemyTarget;
+    public Transform player;
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
@@ -25,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
         if (enemyTarget != null)
         {
             nav.SetDestination(enemyTarget.position);
+            transform.LookAt(player);
             float enemySpeed = nav.velocity.magnitude;
             anim.SetFloat("Speed", enemySpeed);
         }

@@ -10,10 +10,10 @@ public class GunController : MonoBehaviour
     [SerializeField]
     [Range(1, 10)]
     int damage = 1;
-    int bulletCount = 6;
+    [SerializeField]
+    int bulletCount = 60;
     [SerializeField] float timer;
-    [SerializeField] Transform firePoint;
-    public ParticleSystem particleEffect;
+    public ParticleSystem bulletParticleEffect;
     public ParticleSystem deathParticleEffect;
     Animator anim;
 
@@ -21,6 +21,12 @@ public class GunController : MonoBehaviour
 
     AudioSource audioSource;
     public AudioClip shootClip;
+
+    public static GunController instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +46,7 @@ public class GunController : MonoBehaviour
                 if (bulletCount > 0)
                 {
                     FireGun();
+                    bulletParticleEffect.Play();
                 }
             }
         }
@@ -47,7 +54,7 @@ public class GunController : MonoBehaviour
 
     private void FireGun()
     {
-        particleEffect.Play();
+       
         bulletCount--;
         Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
         Debug.DrawRay(ray.origin, ray.direction * 100f, Color.blue, 2f);
@@ -57,7 +64,6 @@ public class GunController : MonoBehaviour
         audioSource.Play();
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            //Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             var health = hit.collider.gameObject.GetComponent<Health>();
             Instantiate(deathParticleEffect, hit.collider.gameObject.transform.position, Quaternion.identity);
             deathParticleEffect.gameObject.SetActive(true);

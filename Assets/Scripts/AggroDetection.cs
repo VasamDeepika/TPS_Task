@@ -11,11 +11,13 @@ public class AggroDetection : MonoBehaviour
     public bool aggroDetected = false;
     public static AggroDetection instance;
 
-    public int score = 0;
-
     private void Awake()
     {
         instance = this;
+    }
+    private void Start()
+    {
+        PlayerMovement player = GetComponent<PlayerMovement>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +30,6 @@ public class AggroDetection : MonoBehaviour
             if(aggroDetected == true)
             {
                 ScoreManager.instance.AggroIncrementScore();
-                PlayerMovement.instanc.SaveData();
             }
         }
     }

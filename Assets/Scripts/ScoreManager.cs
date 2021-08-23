@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -11,11 +13,12 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     public void IncrementScore()
     {
-            score++;
-            ScoreText.text = "Score: " + score;
+        score++;
+        ScoreText.text = "Score: " + score;
     }
     public void AggroIncrementScore()
     {

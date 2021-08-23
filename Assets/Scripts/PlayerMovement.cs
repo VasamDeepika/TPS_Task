@@ -13,15 +13,16 @@ public class PlayerMovement : MonoBehaviour
     public float backSpeed;
     public float turnSpeed;
     public Animator anim;
-    public static PlayerMovement instanc;
+    [SerializeField]
     int coinCount = 5;
+
+    public ParticleSystem coinParticleEffect;
 
     // Start is called before the first frame update
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
-        instanc = this;
     }
 
     // Update is called once per frame
@@ -51,19 +52,9 @@ public class PlayerMovement : MonoBehaviour
         {
             coinCount--;
             other.gameObject.SetActive(false);
+            Instantiate(coinParticleEffect, transform.position, Quaternion.identity);
+            coinParticleEffect.gameObject.SetActive(true);
             ScoreManager.instance.IncrementScore();
-            SaveData();
         }
-    }
-
-    public void SaveData()
-    {
-        //PlayerPrefs.SetInt("highscore",score);
-        string filePath = UnityEngine.Application.persistentDataPath + "/PlayerScore.file";
-        FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-        BinaryWriter bw = new BinaryWriter(fs);
-        bw.Write(AggroDetection.instance.score);
-        fs.Close();
-        bw.Close();
     }
 }

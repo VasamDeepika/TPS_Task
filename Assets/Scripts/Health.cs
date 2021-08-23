@@ -12,7 +12,6 @@ public class Health : MonoBehaviour
     public bool isPlayerAlive = true;
     public static Health instance;
 
-    //public ParticleSystem particleEffect;
     private void OnEnable()
     {
         currentHealth = startHealth;
@@ -31,7 +30,6 @@ public class Health : MonoBehaviour
     }
     private void Die()
     {
-        //particleEffect.Play();
         gameObject.SetActive(false);
         if(gameObject.tag == "Player")
         {
