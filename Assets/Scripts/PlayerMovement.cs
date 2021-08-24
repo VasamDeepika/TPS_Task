@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
         if (vertical != 0)
         {
             float moveSpeed = (vertical > 0) ? playerSpeed : backSpeed;
-            //anim.SetTrigger("Back");
             characterController.SimpleMove(transform.forward * vertical * moveSpeed);
 
         }

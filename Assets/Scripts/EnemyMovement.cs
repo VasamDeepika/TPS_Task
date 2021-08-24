@@ -25,10 +25,6 @@ public class EnemyMovement : MonoBehaviour
     {
         this.enemyTarget = target;
     }
-    void Start()
-    {
-        
-    }
     private void Update()
     {
         if (enemyTarget != null)
