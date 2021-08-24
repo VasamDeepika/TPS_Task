@@ -57,11 +57,4 @@ public class PlayerMovement : MonoBehaviour
             ScoreManager.instance.IncrementScore();
         }
     }
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Gold")
-        {
-            print("trigger");
-        }
-    }*/
 }

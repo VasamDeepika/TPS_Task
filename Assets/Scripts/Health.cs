@@ -26,11 +26,13 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            //GunController.instance.deathParticleEffect.gameObject.SetActive(true);
         }
     }
     private void Die()
     {
         gameObject.SetActive(false);
+        
         if(gameObject.tag == "Player")
         {
             isPlayerAlive = false;

@@ -16,7 +16,6 @@ public class GunController : MonoBehaviour
     public ParticleSystem bulletParticleEffect;
     public ParticleSystem deathParticleEffect;
     Animator anim;
-
     public Transform cameraTranform;
 
     AudioSource audioSource;

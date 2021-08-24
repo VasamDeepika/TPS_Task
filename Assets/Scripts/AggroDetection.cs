@@ -16,6 +16,10 @@ public class AggroDetection : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         PlayerMovement player = GetComponent<PlayerMovement>();
     }
+    void Update()
+    {
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         var player = other.GetComponent<PlayerMovement>();
@@ -27,7 +31,7 @@ public class AggroDetection : MonoBehaviour
             if(aggroDetected == true)
             {
                 ScoreManager.instance.AggroIncrementScore();
-                anim.SetFloat("Speed", EnemyMovement.instance.enemySpeed);
+                anim.SetTrigger("Run");
             }
 
         }

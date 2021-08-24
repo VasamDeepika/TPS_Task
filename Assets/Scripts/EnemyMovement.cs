@@ -12,10 +12,11 @@ public class EnemyMovement : MonoBehaviour
     //public Transform player;
     public static EnemyMovement instance;
     public float enemySpeed;
+    Animator anim;
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
-        
+        anim = GetComponentInChildren<Animator>();
         aggro = GetComponent<AggroDetection>();
         aggro.OnAggro += Aggro_OnAggro;
         instance = this;
@@ -35,7 +36,7 @@ public class EnemyMovement : MonoBehaviour
             nav.SetDestination(enemyTarget.position);
             //transform.LookAt(player);
             enemySpeed = nav.velocity.magnitude;
-            
+            anim.SetFloat("Speed", enemySpeed);
         }
     }
 }
