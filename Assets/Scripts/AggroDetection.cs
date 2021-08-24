@@ -7,11 +7,13 @@ using System;
 
 public class AggroDetection : MonoBehaviour
 {
+    Animator anim;
     public event Action<Transform> OnAggro = delegate { };
     public bool aggroDetected = false;
    
     private void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         PlayerMovement player = GetComponent<PlayerMovement>();
     }
     private void OnTriggerEnter(Collider other)
@@ -25,7 +27,9 @@ public class AggroDetection : MonoBehaviour
             if(aggroDetected == true)
             {
                 ScoreManager.instance.AggroIncrementScore();
+                anim.SetFloat("Speed", EnemyMovement.instance.enemySpeed);
             }
+
         }
     }
 }

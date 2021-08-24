@@ -5,30 +5,37 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    Animator anim;
+   
     AggroDetection aggro;
     NavMeshAgent nav;
     Transform enemyTarget;
-    public Transform player;
+    //public Transform player;
+    public static EnemyMovement instance;
+    public float enemySpeed;
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
-        anim = GetComponentInChildren<Animator>();
+        
         aggro = GetComponent<AggroDetection>();
         aggro.OnAggro += Aggro_OnAggro;
+        instance = this;
     }
     private void Aggro_OnAggro(Transform target)
     {
         this.enemyTarget = target;
+    }
+    void Start()
+    {
+        
     }
     private void Update()
     {
         if (enemyTarget != null)
         {
             nav.SetDestination(enemyTarget.position);
-            transform.LookAt(player);
-            float enemySpeed = nav.velocity.magnitude;
-            anim.SetFloat("Speed", enemySpeed);
+            //transform.LookAt(player);
+            enemySpeed = nav.velocity.magnitude;
+            
         }
     }
 }
