@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
     Transform enemyTarget;
     //public Transform player;
     public static EnemyMovement instance;
-    public float enemySpeed;
+    public float enemySpeed = 2;
     Animator anim;
     private void Awake()
     {

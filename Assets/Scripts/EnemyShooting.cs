@@ -11,6 +11,7 @@ public class EnemyShooting : MonoBehaviour
     private float attackTimer;
     [SerializeField]
     private float attackRefreshRate = 1f;
+    public ParticleSystem bulletParticleEffect;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class EnemyShooting : MonoBehaviour
             if (CanAttack())
             {
                 Attack();
+                
             }
         }
     }
@@ -41,6 +43,7 @@ public class EnemyShooting : MonoBehaviour
     private void Attack()
     {
         attackTimer = 0f;
+        bulletParticleEffect.Play();
         healthTarget.TakeDamage(1);
     }
 
